@@ -1,0 +1,50 @@
+.header {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.body {
+  background-color: white;
+}
+
+.body-form {
+  background-color: #343028;
+}
+
+.todo-list {
+  width: 800px;
+  min-width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.todo-item {
+  height: 50px;
+  min-height: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 4fr 5fr;
+  align-items: stretch;
+  border-top: #343028 1px solid;
+  padding-top: 10px;
+}
+
+.todo-item-id {
+  text-align: center;
+}
+
+.todo-item-is-done {
+  text-align: center;
+}
+
+/*
+343028
+7C735F
+*/
