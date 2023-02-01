@@ -27,4 +27,11 @@ public class ToDoItemService {
         return toDoItemRepository.findAll();
     }
 
+    public void delete(final Long id) {
+        if (id == null) {
+            throw new NullPointerException("ID cannot be null");
+        }
+        toDoItemRepository.deleteById(id);
+    }
+
 }

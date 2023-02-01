@@ -1,29 +1,29 @@
 import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { todoItemListState } from '../atoms';
+import TodoItemApis from '../apis/TodoItemApis';
+import { todoItemListAtom } from '../atoms';
+import { IToDoItem } from '../interfaces';
 
 const Form = () => {
-  const [toDoItemList, setToDoItemList] = useRecoilState(todoItemListState);
+  const [toDoItemList, setToDoItemList] = useRecoilState(todoItemListAtom);
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
 
   const onChangeTitleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
+
   const onChangeContentInput = (e: ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   };
 
-  const onClickTodoAddButton = (e: MouseEvent<HTMLButtonElement>) => {
-    setToDoItemList([
-      {
-        id: toDoItemList.map((item) => item.id).sort((a, b) => b - a)[0] + 1,
-        title: title,
-        content: content,
-        isDone: false,
-      },
-      ...toDoItemList,
-    ]);
+  const onClickTodoAddButton = async (e: MouseEvent<HTMLButtonElement>) => {
+    const response = await TodoItemApis.post('new', {
+      title: title,
+      content: content,
+    } as IToDoItem);
+
+    setToDoItemList([response, ...toDoItemList]);
     setTitle('');
     setContent('');
   };

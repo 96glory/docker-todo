@@ -1,27 +1,21 @@
 import { atom, selector } from 'recoil';
+import TodoItemApis from './apis/TodoItemApis';
 import { IToDoItem } from './interfaces';
 
-export const todoItemListState = atom<IToDoItem[]>({
-  key: 'todoItemListState',
-  default: [
-    { id: 1, title: '우유 사오기', content: '락토프리 우유로', isDone: true },
-    { id: 2, title: '운동 다녀오기', content: '가기 귀찮다', isDone: false },
-    { id: 3, title: '개발하기', content: '도커를 배워보자', isDone: false },
-    {
-      id: 4,
-      title:
-        '길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트',
-      content:
-        '길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트길다란거테스트',
-      isDone: false,
+export const todoItemListAtom = atom<IToDoItem[]>({
+  key: 'todoItemListAtom',
+  default: selector({
+    key: 'todoItemListAtom/default',
+    get: async ({ get }) => {
+      return TodoItemApis.getAll();
     },
-  ],
+  }),
 });
 
-export const sortedTodoItemList = selector<IToDoItem[]>({
-  key: 'sortedTodoItemList',
+export const sortedTodoItemListSelector = selector<IToDoItem[]>({
+  key: 'sortedTodoItemListSelector',
   get: ({ get }) => {
-    const state = get(todoItemListState);
+    const state = get(todoItemListAtom);
 
     if (state.length === 0) return [];
 

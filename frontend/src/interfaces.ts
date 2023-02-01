@@ -4,3 +4,8 @@ export interface IToDoItem {
   content: string;
   isDone: boolean;
 }
+
+export interface IDefaultResponse<T> {
+  data: T;
+  errors: Array<any>;
+}

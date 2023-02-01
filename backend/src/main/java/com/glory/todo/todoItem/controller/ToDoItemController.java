@@ -8,6 +8,7 @@ import com.glory.todo.todoItem.service.ToDoItemService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,20 @@ public class ToDoItemController {
         ToDoItem toDoItem = ToDoItemAdapter.toToDoItem(toDoItemRequest);
         try {
             toDoItem = toDoItemService.create(toDoItem);
+        } catch (final Exception e) {
+            errors.add(e.getMessage());
+        }
+
+        return ToDoItemAdapter.toDoItemResponse(toDoItem, errors);
+    }
+
+    @DeleteMapping("/{id}")
+    public ToDoItemResponse delete(@PathVariable(value = "id") Long id) {
+        List<String> errors = new ArrayList<>();
+        ToDoItem toDoItem = null;
+        try {
+            toDoItem = toDoItemService.get(id);
+            toDoItemService.delete(id);
         } catch (final Exception e) {
             errors.add(e.getMessage());
         }
