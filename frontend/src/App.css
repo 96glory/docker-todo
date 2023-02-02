@@ -22,7 +22,7 @@
   min-width: 800px;
   height: 50px;
   display: grid;
-  grid-template-columns: 2fr 4fr 5fr 1fr;
+  grid-template-columns: 1fr 4fr 5fr 1fr 1fr;
   align-items: stretch;
 
   margin-top: 10px;
@@ -30,7 +30,7 @@
 }
 
 .body-form-input {
-  margin-right: 10px;
+  margin-right: 5px;
   padding-left: 5px;
 }
 
@@ -45,11 +45,15 @@
 .todo-item {
   min-height: 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr 4fr 5fr 1fr;
+  grid-template-columns: 0.5fr 0.5fr 4fr 5fr 1fr 1fr;
   align-items: stretch;
   border-top: #343028 1px solid;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.todo-item-element {
+  margin-right: 5px;
 }
 
 .todo-item-id {
@@ -61,11 +65,9 @@
 }
 
 .todo-item-title {
-  margin-right: 10px;
 }
 
 .todo-item-content {
-  margin-right: 10px;
 }
 
 .button {
@@ -84,6 +86,8 @@
   min-height: 50px;
 
   white-space: nowrap;
+
+  margin-right: 5px;
 }
 
 .add-button {
