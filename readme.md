@@ -4,6 +4,13 @@
 
 - todo application composed by docker
 
+```shell
+docker-compose up --build
+# react : localhost:3000
+# backend : localhost:8080
+# adminer : localhost:18080
+```
+
 ## backend
 
 - java 17
