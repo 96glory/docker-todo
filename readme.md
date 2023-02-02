@@ -2,15 +2,23 @@
 
 [링크](https://imasoftwareengineer.tistory.com/37) 참조
 
+- todo application composed by docker
+
 ## backend
 
+- java 17
 - spring boot
 - spring jpa
+- spring mvc
 
 ## frontend
 
-- react or vue
+- Node 19.5
+- typescript/javascript
+- react with cra
+- recoil
 
-## db
+## DB
 
-- h2 database
+- ~~h2 database~~
+- MySQL

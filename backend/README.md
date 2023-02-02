@@ -48,6 +48,11 @@ CREATE TABLE IF NOT EXISTS TODO_DB.TO_DO_ITEM (
   IS_DONE BIT(1),
   PRIMARY KEY(ID)
 );
+```
 
+## docker 수행
 
+```shell
+# Docker file 작성 참조
+docker build -t glory/docker-todo-spring . 
 ```

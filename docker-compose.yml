@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  database:
+    container_name: todo-database
+    build: ./database
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: TODO_DB
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: userpwd
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: rootpwd
+    stdin_open: true
+    tty: true
+  database-adminer:
+    container_name: todo-database-adminer
+    image: adminer:latest
+    ports:
+      - "18080:8080"
+    environment:
+      - ADMINER_DEFAULT_SERVER=database
+      - ADMINER_DESIGN=hydra
+      - ADMINER_PLUGINS=tables-filter tinymce
+    links:
+      - database
+  backend:
+    container_name: todo-backend
+    build: ./backend
+    restart: always
+    ports:
+      - "8080:8080"
+    links:
+      - database
+  frontend:
+    container_name: todo-frontend
+    restart: always
+    build: ./frontend
+    volumes:
+      - /usr/src/app/node_modules
+      - ./frontend:/usr/src/app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    links:
+      - backend
